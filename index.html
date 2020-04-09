@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Display a map</title>
+<title>COVID-19</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
@@ -32,7 +32,23 @@ zoom: 3 // starting zoom
         async function renderData() {
             const data = await getData()
             console.log(data)
-        }
+
+        } 
+
+        var marker = new mapboxgl.Marker()
+             .setLngLat([30.5, 50.5])
+             .addTo(map);
+        //data.forEach(item => {
+            //var marker = new mapboxgl.Marker(el, { offset: [0, -23] })
+            //.setLngLat(marker.geometry.coordinates)
+            //.setLngLat(item.location.lat)
+            //.addTo(map);
+            //.setLngLat([
+           // lat (item,location,lat),
+           // lng (item,location,lat)
+           // ])
+            //.addTo(map);        })
+   
 
 </script>
  
