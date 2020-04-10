@@ -28,16 +28,40 @@ zoom: 3 // starting zoom
         
         return data
     }
+            
+            
+            
+           // var el = document.createElement('div');
+            //el.id = 'marker';
+      async function renderData() {
+                const data = await getData()
+                console.log(data)
+                data.forEach(item => {
+                //console.log(item)
+                var Popup = new mapboxgl.Popup({map,marker})
+            .setText('hola.'
+            );
+            var marker = new mapboxgl.Marker()
+                .setLngLat([item.location.lng,item.location.lat])
+                .setPopup(Popup)
+                .addTo(map);
+                //.setLngLat([item.location.lng,item.location.lat])
+            //var popup = new mapboxgl.Popup()
+            
+                //.setLngLat(marker)
+                //.setHTML('Hello ')
+                
 
-        async function renderData() {
-            const data = await getData()
-            console.log(data)
+           });    
+            
+            //.addTo(map);    
+       
 
         } 
 
-        var marker = new mapboxgl.Marker()
-             .setLngLat([30.5, 50.5])
-             .addTo(map);
+             
+        
+        
         //data.forEach(item => {
             //var marker = new mapboxgl.Marker(el, { offset: [0, -23] })
             //.setLngLat(marker.geometry.coordinates)
