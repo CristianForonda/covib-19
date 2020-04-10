@@ -48,7 +48,31 @@ zoom: 3 // starting zoom
         return data
     }
             
-        //function render
+    var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-77.032, 38.913]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'Washington, D.C.'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-122.414, 37.776]
+    },
+    properties: {
+      title: 'Mapbox',
+      description: 'San Francisco, California'
+    }
+  }]
+};
             
             
            // var el = document.createElement('div');
@@ -57,6 +81,7 @@ zoom: 3 // starting zoom
                 const data = await getData()
                 console.log(data)
                 data.forEach(item => {
+                    if (item.confirmed > 0 ){
                 //console.log(item)
                 var Popup = new mapboxgl.Popup({map,marker})
             .setText('hola.'
@@ -73,11 +98,10 @@ zoom: 3 // starting zoom
                 //.setLngLat(marker)
                 //.setHTML('Hello ')
                 
-
+                    }
            });    
             
-            //.addTo(map);    
-       
+             //.addTo(map);    
 
         } 
 
