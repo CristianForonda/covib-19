@@ -36,7 +36,7 @@ cursor: pointer;
 	mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2hhd2tpbnMiLCJhIjoiY2s4cmoxZXdrMGY2MDNscTh0YzhiYTlmeSJ9.IOCvVYioPfu2bb6I6vTsgA';
 var map = new mapboxgl.Map({
 container: 'map', // container id
-style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+style: 'mapbox://styles/luishawkins/ck8ugbp9l16ad1jqe363y8m46', // stylesheet location
 center: [0, 0], // starting position [lng, lat]
 zoom: 3 // starting zoom
 })
@@ -48,49 +48,38 @@ zoom: 3 // starting zoom
         return data
     }
             
-    var geojson = {
-  type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-77.032, 38.913]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'Washington, D.C.'
-    }
-  },
-  {
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-122.414, 37.776]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'San Francisco, California'
-    }
-  }]
-};
+   
             
             
            // var el = document.createElement('div');
             //el.id = 'marker';
       async function renderData() {
                 const data = await getData()
+            var geojson = {
+            type: 'FeatureCollection',
+            features: [{   type: 'Feature',   location: { popup:[map]  },
+            properties: { title: 'Mapbox',  description: 'Washington, D.C.'}  }] };
+
                 console.log(data)
                 data.forEach(item => {
                     if (item.confirmed > 0 ){
                 //console.log(item)
-                var Popup = new mapboxgl.Popup({map,marker})
-            .setText('hola.'
-            );
+                geojson.features.forEach(function(markersty){ 
+                var Popup = new mapboxgl.Popup({map,markersty}).setHTML(
+                    '<h3>' + item.countryregion +'</h3>'+
+                    '<p><b>Confimados: </b>' + item.confirmed + '</p>'+
+                    '<p><b>Muertos: </b>' + item.deaths + '</p>'+
+                    '<p><b>Recuperados: </b>' + item.recovered + '</p>'
+                    )
+            //.setText('hola.' );
+            
             var el = document.createElement('div');
             el.id = 'markersty';
-            var marker = new mapboxgl.Marker(el)
+            var markersty = new mapboxgl.Marker(el)
                 .setLngLat([item.location.lng,item.location.lat])
                 .setPopup(Popup)
+              //.setHTML('<h3>' + markersty.properties.title + '</h3><p>' + markersty.properties.description + '</p>')
+                //.setHTML('<h3>' + item.countryregion + '</h3><p>' + item.countryregion + '</p>')
                 .addTo(map);
                 //.setLngLat([item.location.lng,item.location.lat])
             //var popup = new mapboxgl.Popup()
@@ -98,7 +87,8 @@ zoom: 3 // starting zoom
                 //.setLngLat(marker)
                 //.setHTML('Hello ')
                 
-                    }
+                  }) 
+                 }
            });    
             
              //.addTo(map);    

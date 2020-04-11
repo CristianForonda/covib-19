@@ -1,5 +1,4 @@
-
-
+export default [] 
 
 
 .marker {
@@ -10,3 +9,5 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+
